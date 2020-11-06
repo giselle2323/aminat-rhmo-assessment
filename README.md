@@ -155,8 +155,8 @@ Use any of the following tokens to authenticate the requests:
 
 | user| token|
 | ----- | ------ |
-|1|eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTk0MTgzMzUwLCJleHAiOjE1OTY3NzUzNTB9.SS17FWeuomLQxAqyIEiPk0hTjLcKjh91XpM6U2X7dkM|
-|2|eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNTk0MTg1NDczLCJleHAiOjE1OTY3Nzc0NzN9.BNp8WsyYR0WucmfuCxg_hrVZXTrgj0--lwTnyO-IBBg|
+|1|eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjA0NjgyNjAzLCJleHAiOjE2MDcyNzQ2MDN9.77xlyzeg9IWIfuZpVyAu2k8-D0IipRVT2dfLDLRQk-0|
+|2|eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjA0NjgyNzMwLCJleHAiOjE2MDcyNzQ3MzB9.JbyIrhLIDe6lNqXTSpYPc0keTphnCgcKhbfUEHv-MFA|
 
 ## Instructions:
 PLEASE NOTE: You're not to use any external libraries, other than the ones already provided.
