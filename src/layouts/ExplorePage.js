@@ -39,8 +39,8 @@ class ExplorePage extends React.Component {
   }
 
   navigateToRoute = (path) => {
-      const { history } = this.props;
-      history.push(path);
+    const { history } = this.props;
+    history.push(path);
     
   };
 

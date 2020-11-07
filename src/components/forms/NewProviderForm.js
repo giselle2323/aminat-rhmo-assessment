@@ -12,14 +12,14 @@ class NewProviderForm extends React.Component {
     super(props);
     
     this.state = {
-        name: this.props.name,
-        description: this.props.description,
-        rating: this.props.rating,
-        address: this.props.address,
-        type: this.props.type,
-        state: this.props.state,
-        active_status: 'pending',
-        imageUrl: this.props.imageUrl ? this.props.imageUrl : "https://via.placeholder.com/1500x840",
+      name: this.props.name,
+      description: this.props.description,
+      rating: this.props.rating,
+      address: this.props.address,
+      type: this.props.type,
+      state: this.props.state,
+      active_status: 'pending',
+      imageUrl: this.props.imageUrl ? this.props.imageUrl : "https://via.placeholder.com/1500x840",
     }
   }
 

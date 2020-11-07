@@ -6,7 +6,6 @@ import queryString from 'querystring';
  */
 
  const BASE_URL = "https://pro-zone.herokuapp.com";
-const TOKEN = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjA0NjgyNjAzLCJleHAiOjE2MDcyNzQ2MDN9.77xlyzeg9IWIfuZpVyAu2k8-D0IipRVT2dfLDLRQk-0'
 
 class ApiService {
   static ENDPOINTS = {
@@ -28,7 +27,7 @@ class ApiService {
       `${url}${data ? `?${queryString.stringify(data)}` : ''}`,
       {
         headers: {
-          Authorization: TOKEN // replace auth token with the action authentication token
+          Authorization: `Bearer ${process.env.REACT_APP_API_TOKEN}` // replace auth token with the action authentication token
         },
       }
     );
@@ -51,7 +50,7 @@ class ApiService {
         body: data,
         headers: {
           ...headers,
-          Authorization: TOKEN // replace auth token with the action authentication token
+          Authorization: `Bearer ${process.env.REACT_APP_API_TOKEN}` // replace auth token with the action authentication token
         },
       }
     );
