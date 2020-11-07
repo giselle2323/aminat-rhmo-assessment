@@ -15,8 +15,8 @@ const List = ({ items }) => (
           address={provider.address}
           imageUrl={provider.imageUrl}
           name={provider.name}
-          rating={provider.rating}
-          providerType={provider.type}
+          rating={provider.rating ? provider.rating: 0}
+          providerType={provider.type ? provider.type : 'pending'}
           cardType="sm"
         />
       ))

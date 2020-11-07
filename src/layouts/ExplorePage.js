@@ -16,7 +16,8 @@ class ExplorePage extends React.Component {
       data: [],
       isLoading: false,
       filteredProviders: [],
-      currView: 'gallery'
+      currView: 'gallery',
+      imageFallBackSrc: "https://via.placeholder.com/1500x840"
     };
   }
 
@@ -65,7 +66,7 @@ class ExplorePage extends React.Component {
   }
 
   renderSelectedView = () => {
-    const {currView, data } = this.state;
+    const {currView, data, imageFallBackSrc } = this.state;
     switch(currView) {
       case "gallery":
         return (
@@ -74,7 +75,7 @@ class ExplorePage extends React.Component {
               id: item.id,
               name: item.name,
               description: item.description,
-              imageUrl: item.images.length > 0 ? item.images[0].url : "https://via.placeholder.com/1500x840",
+              imageUrl: item.images.length > 0 ? item.images[0].url : imageFallBackSrc,
             }))}
             onClick={this.navigateToRoute}
           />
@@ -82,26 +83,14 @@ class ExplorePage extends React.Component {
       case "grid":
         return (
           <Grid
-            items={data.map((item) => ({
-              id: item.id,
-              name: item.name,
-              description: item.description,
-              imageUrl:
-                item.images && item.images.length > 0 && item.images[0].url,
-            }))}
+            items={data}
             onClick={this.navigateToRoute}
           />
         )
       case "list":
         return (
           <List
-            items={data.map((item) => ({
-              id: item.id,
-              name: item.name,
-              description: item.description,
-              imageUrl:
-                item.images && item.images.length > 0 && item.images[0].url,
-            }))}
+            items={data}
             onClick={this.navigateToRoute}
           />
         )
