@@ -12,7 +12,7 @@ const List = ({ items }) => (
       : items.map(provider => (
         <ProviderCard
           key={provider.id}
-          address={provider.location.address}
+          address={provider.address}
           imageUrl={provider.imageUrl}
           name={provider.name}
           rating={provider.rating}

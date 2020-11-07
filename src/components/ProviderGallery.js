@@ -17,8 +17,113 @@ class Gallery extends React.Component {
   //
   // ============== CODE GOES BELOW THIS LINE :) ==============
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentImageIndex: 0,
+    }
+  }
+
+
+  goToPrevImage = () => {
+    const { currentImageIndex } = this.state;
+    const { items } = this.props;
+    if (currentImageIndex < items.length && currentImageIndex !==0) {
+      this.setState({ currentImageIndex: currentImageIndex - 1 })
+    }
+  }
+
+  goToNextImage = () => {
+    const { currentImageIndex } = this.state;
+    const { items } = this.props;
+    if ( currentImageIndex < items.length - 1) {
+      this.setState({currentImageIndex: currentImageIndex + 1})
+    }
+  }
+
+  renderSliderChevrons = (items, currentImageIndex) => (
+    <div className="gallery__slider-controls">
+      <button
+        className="gallery__slider-controls__button left"
+        onClick={this.goToPrevImage}
+        disabled={currentImageIndex === 0}
+      >
+        <i className="fa fa-chevron-left"></i>
+      </button>
+      <button
+        className="gallery__slider-controls__button right"
+        onClick={this.goToNextImage}
+        disabled={currentImageIndex === items.length - 1}
+      >
+        <i className="fa fa-chevron-right"></i>
+      </button>
+    </div>
+  );
+  renderGallerySlider = (items, index) => {
+    const { onClick } = this.props;
+    const currentImage = items[index];
+    const prevImage = items[index - 1];
+    const nextImage = items[index + 1]
+     return (
+       <div className="gallery__slider-item-wrapper">
+         <div 
+          className="gallery__slider-item prev"
+          style={{ backgroundImage: `url(${prevImage && prevImage.imageUrl })`,}}
+         ></div>
+         <div className="gallery__slider-item">
+            <img
+              src={currentImage.imageUrl}
+              className="gallery__slider-item active"
+              alt='currentSlide'
+            />
+           <div className="gallery__slider-item__info">
+              <div className="gallery__slider-item__info-name">
+                {currentImage.name}
+              </div>
+              <div className="gallery__slider-item__info-description">
+                {currentImage.description}
+               <p
+                 className="read-more"
+                 onClick={() => {
+                   onClick(`/${currentImage.id}`);
+                 }}
+               >
+                 Read More
+              </p>
+              </div>
+              
+            </div>
+         </div>
+         <div
+           className="gallery__slider-item next"
+           style={{
+             backgroundImage: `url(${nextImage && nextImage.imageUrl && nextImage.imageUrl})`,
+           }}
+         ></div>
+      </div>
+     );
+  };
+
+  renderThumbnails = (items, currentImageIndex) => {
+    return (
+      <div className="gallery__thumbnails">
+        {items.length > 0 &&
+          items.map((item, index) => (
+            <div
+              key={item.id}
+              className={`gallery__thumbnails__item ${index === currentImageIndex && "active"
+                }`}
+              style={{
+                backgroundImage: `url(${item.imageUrl})`,
+              }}
+            ></div>
+          ))}
+      </div>
+    )
+  }
 
   render() {
+    const { currentImageIndex } = this.state;
     const { items } = this.props;    
     if(!items || items.length === 0) {
       return (
@@ -28,44 +133,10 @@ class Gallery extends React.Component {
     return (
       <div data-testid="gallery" className="box-shadow gallery">
         <div className="gallery__slider">
-          <div className="gallery__slider-item-wrapper">
-            <div className="gallery__slider-item prev"
-              style={{backgroundImage:`url("https://via.placeholder.com/150x100")`}}> 
-            </div>            
-            <div className="gallery__slider-item active">
-              <img src={"https://via.placeholder.com/150x100"} className="gallery__slider-item active" alt="" />
-              <div className="gallery__slider-item__info">
-                <div className="gallery__slider-item__info-name">A Provider Name</div>
-                <div className="gallery__slider-item__info-description">
-                  A Description
-                  <p className="read-more">Click to View</p>
-                </div>
-              </div>
-            </div>          
-            <div className="gallery__slider-item next"
-              style={{backgroundImage:`url("https://via.placeholder.com/150x100")`}}>              
-            </div>            
-          </div>    
-          <div className="gallery__slider-controls">
-            <button className="gallery__slider-controls__button left">
-              <i className="fa fa-chevron-left"></i>
-            </button>
-            <button className="gallery__slider-controls__button right">
-              <i className="fa fa-chevron-right"></i>
-            </button>
-          </div>      
+          {this.renderGallerySlider(items, currentImageIndex)}  
+          {this.renderSliderChevrons(items, currentImageIndex)}
         </div>     
-        <div className="gallery__thumbnails">
-          <div className="gallery__thumbnails__item"
-            style={{backgroundImage:`url("https://via.placeholder.com/150x100")`}}>            
-          </div>
-          <div className="gallery__thumbnails__item active"
-            style={{backgroundImage:`url("https://via.placeholder.com/150x100")`}}>            
-          </div>
-          <div className="gallery__thumbnails__item"
-            style={{backgroundImage:`url("https://via.placeholder.com/150x100")`}}>            
-          </div>                                       
-        </div>
+        {this.renderThumbnails(items, currentImageIndex)}
       </div>
     )
   }

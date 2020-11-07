@@ -6,6 +6,7 @@ import queryString from 'querystring';
  */
 
  const BASE_URL = "https://pro-zone.herokuapp.com";
+const TOKEN = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjA0NjgyNjAzLCJleHAiOjE2MDcyNzQ2MDN9.77xlyzeg9IWIfuZpVyAu2k8-D0IipRVT2dfLDLRQk-0'
 
 class ApiService {
   static ENDPOINTS = {
@@ -24,7 +25,12 @@ class ApiService {
 
   static async get(url, data) {
     const response = await fetch(
-      `${url}${data ? `?${queryString.stringify(data)}` : ''}`
+      `${url}${data ? `?${queryString.stringify(data)}` : ''}`,
+      {
+        headers: {
+          Authorization: TOKEN // replace auth token with the action authentication token
+        },
+      }
     );
     return response.json();
   }
@@ -38,11 +44,15 @@ class ApiService {
    * @returns {object} request reponse in JSON format
    */
 
-  static async post(url, data) {
+  static async post(url, data, headers={}) {
     const response = await fetch(
       url, {
         method: 'POST',
-        body: data
+        body: data,
+        headers: {
+          ...headers,
+          Authorization: TOKEN // replace auth token with the action authentication token
+        },
       }
     );
     return response.json();
