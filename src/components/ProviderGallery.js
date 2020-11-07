@@ -82,6 +82,7 @@ class Gallery extends React.Component {
               </div>
               <div className="gallery__slider-item__info-description">
                 {currentImage.description}
+                {/* Issues with slider-control z-index, readmore is not clickable expect z-index is negative, wasnt able to resolve */}
                <p
                  className="read-more"
                  onClick={() => {

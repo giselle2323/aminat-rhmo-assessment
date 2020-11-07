@@ -84,14 +84,12 @@ class ExplorePage extends React.Component {
         return (
           <Grid
             items={data}
-            onClick={this.navigateToRoute}
           />
         )
       case "list":
         return (
           <List
             items={data}
-            onClick={this.navigateToRoute}
           />
         )
       default:
