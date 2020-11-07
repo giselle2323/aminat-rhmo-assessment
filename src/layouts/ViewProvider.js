@@ -35,7 +35,7 @@ const ViewProvider = () => {
           <div>
             Provider Image:{" "}
             <img
-              src={provider.images && provider.images[0].url}
+              src={!provider.Url && "https://via.placeholder.com/1500x840"}
               alt={provider}
               width="200"
             />

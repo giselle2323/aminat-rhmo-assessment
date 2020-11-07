@@ -42,7 +42,7 @@ class Gallery extends React.Component {
   }
 
   renderSliderChevrons = (items, currentImageIndex) => (
-    <div className="gallery__slider-controls">
+    <div className="gallery__slider-controls" style= {{ height: '300px'  }}>
       <button
         className="gallery__slider-controls__button left"
         onClick={this.goToPrevImage}
@@ -65,7 +65,7 @@ class Gallery extends React.Component {
     const prevImage = items[index - 1];
     const nextImage = items[index + 1]
      return (
-       <div className="gallery__slider-item-wrapper">
+        <div className="gallery__slider-item-wrapper">
          <div 
           className="gallery__slider-item prev"
           style={{ backgroundImage: `url(${prevImage && prevImage.imageUrl })`,}}
@@ -100,7 +100,7 @@ class Gallery extends React.Component {
              backgroundImage: `url(${nextImage && nextImage.imageUrl && nextImage.imageUrl})`,
            }}
          ></div>
-      </div>
+        </div>
      );
   };
 
